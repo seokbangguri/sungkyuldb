@@ -1,6 +1,6 @@
 <?php
 
-$host = '34.64.159.162';
+$host = 'localhost';
 $user = 'seokbangguri';
 $pw = '1234';
 $dbName = 'damda';

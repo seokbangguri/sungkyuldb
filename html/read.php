@@ -36,7 +36,7 @@
                 </ul></li>
             <li id="top"><a class="menu" href="../html/culture.html">서비스</a>
                 <ul id="dropdown">
-                    <li id= "item"><a href="../html/noti.php">자유게시판</a></li>
+                        <li id= "item"><a href="../html/noti.php">자유게시판</a></li>
                     <li id= "item"><a href="../html/culture.html">문화 프로그램</a></li>
                     <li id= "item"><a href="../html/service.html">갤러리 대관</a></li>
                 </ul></li>
@@ -74,25 +74,43 @@
         <!--메인 컨텐츠-->
         <div class="content">
             <div class="welcome">
-            <div class="sidetab" id="introside">
-                <h3>미술관 소개</h3><br>
+            <div class="sidetab">
+                <h3>서비스</h3><br>
                 <h5>
-                    <a href="../html/introduce.html">이사장 인사말</a><br><br>
-                    <a href="../html/introduce2.html">관장 인사말</a><br><br>
-                    <a href="../html/purpose.html">연혁</a><br><br>
-                    <a href="../html/purpose2.html">설립 목적</a><br><br>
-                    <a href="../html/organization.html">조직도</a>
+                    <a href="../html/culture.html">문화 프로그램</a><br><br>
+                    <a href="../html/service.html">갤러리 공간 대여</a>
                 </h5>
             </div>
                 <div id="hi">
-                    <h2>설립목적</h2><br>
-                    <p>
-                        1. &ensp; ‘본 미술관’은 대한민국의 근현대사를 바탕으로 각종 문화예술사업을 통하여 생명존중과 상호이해, 갈등해소, 한반도평화 및 세계평화에 기여함을 목적으로 한다.<br><br>
-                        2. &ensp; 시민, 학생들에게 그림을 통하여 한국의 근현대사를 알기 쉽게 접할수 있게 함으로써 점차 잊혀져 가는 한국의 근현대사에 대한 역사인식을 제고할 뿐만 아니라 역사의 주체적인 주인으로써 책임을 가질 수 있게 한다.<br><br>
-                        3. &ensp; 전시문화를 통하여 올바른 역사교육과 애국심을 고양하고 민족문화를 선양하고 문화발전에 기여한다.<br><br>
-                        4. &ensp; 작품 감상 및 관련사진, 자료, 체험 등을 통하여 시민 및 학생들에게 감성 및 인성교육을 겸하고 문화예술 저변을 확대한다.<br><br>
-                        5. &ensp; 화가들과 예술인들의 창작활동에 기여한다.<br><br>
-                    </p>
+                <h2>자유게시판</h2>
+                <h4>글을 작성하는 공간입니다.</h4>
+                <?php
+                        $con = mysqli_connect("localhost","seokbangguri","1234","damda");
+                        
+                        $bno = $_GET['idx'];
+                		$sql = "select * from board where idx=$bno"; /* 받아온 idx값을 선택 */
+                		$result = mysqli_query($con, $sql);
+                        while($board = mysqli_fetch_assoc($result)) {
+                	?>
+                <!-- 글 불러오기 -->
+                	<h3><?php echo "제목 : ".$board['title']; ?></h3>
+                		<div id="user_info">
+                			작성자 : <?php echo $board['name']; ?> <?php echo $board['date']; ?>
+                		
+                		</div>
+                        <br><br><hr><br>
+                		<div id="bo_content">
+                			<?php echo nl2br("$board[content]"); ?>
+                		</div>
+                        <br><hr><br><br>
+                	<!-- 목록, 수정, 삭제 -->
+                	<div id="bo_ser">
+                		<ul>
+                			<li><a href="noti.php">[목록으로]</a></li>
+                			<li><a href="delete.php?idx=<?php echo $board['idx']; ?>">[삭제]</a></li>
+                		</ul>
+                	</div>
+                    <?php } ?>
                 </div>
             </div>
         </div>

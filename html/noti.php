@@ -36,7 +36,7 @@
                 </ul></li>
             <li id="top"><a class="menu" href="../html/culture.html">서비스</a>
                 <ul id="dropdown">
-                    <li id= "item"><a href="../html/noti.php">자유게시판</a></li>
+                        <li id= "item"><a href="../html/noti.php">자유게시판</a></li>
                     <li id= "item"><a href="../html/culture.html">문화 프로그램</a></li>
                     <li id= "item"><a href="../html/service.html">갤러리 대관</a></li>
                 </ul></li>
@@ -74,25 +74,59 @@
         <!--메인 컨텐츠-->
         <div class="content">
             <div class="welcome">
-            <div class="sidetab" id="introside">
-                <h3>미술관 소개</h3><br>
+            <div class="sidetab">
+                <h3>서비스</h3><br>
                 <h5>
-                    <a href="../html/introduce.html">이사장 인사말</a><br><br>
-                    <a href="../html/introduce2.html">관장 인사말</a><br><br>
-                    <a href="../html/purpose.html">연혁</a><br><br>
-                    <a href="../html/purpose2.html">설립 목적</a><br><br>
-                    <a href="../html/organization.html">조직도</a>
+                    <a href="../html/culture.html">문화 프로그램</a><br><br>
+                    <a href="../html/service.html">갤러리 공간 대여</a>
                 </h5>
             </div>
                 <div id="hi">
-                    <h2>설립목적</h2><br>
-                    <p>
-                        1. &ensp; ‘본 미술관’은 대한민국의 근현대사를 바탕으로 각종 문화예술사업을 통하여 생명존중과 상호이해, 갈등해소, 한반도평화 및 세계평화에 기여함을 목적으로 한다.<br><br>
-                        2. &ensp; 시민, 학생들에게 그림을 통하여 한국의 근현대사를 알기 쉽게 접할수 있게 함으로써 점차 잊혀져 가는 한국의 근현대사에 대한 역사인식을 제고할 뿐만 아니라 역사의 주체적인 주인으로써 책임을 가질 수 있게 한다.<br><br>
-                        3. &ensp; 전시문화를 통하여 올바른 역사교육과 애국심을 고양하고 민족문화를 선양하고 문화발전에 기여한다.<br><br>
-                        4. &ensp; 작품 감상 및 관련사진, 자료, 체험 등을 통하여 시민 및 학생들에게 감성 및 인성교육을 겸하고 문화예술 저변을 확대한다.<br><br>
-                        5. &ensp; 화가들과 예술인들의 창작활동에 기여한다.<br><br>
-                    </p>
+                <div id="fee">
+                    <h1>자유게시판</h1>
+                      <h4>자유롭게 글을 쓸 수 있는 게시판입니다.</h4>
+                <table class="list-table">
+                <thead>
+                  <tr>
+                      <th width="60">번호</th>
+                        <th width="500">제목</th>
+                        <th width="120">글쓴이</th>
+                        <th width="100">작성일</th>
+                    </tr>
+                </thead>
+                <?php
+                    $con = mysqli_connect("localhost","seokbangguri","1234","damda");
+                    $c1_d = $_POST["c1"];
+                    $sql = "SELECT * FROM board order by idx desc limit 0,10";
+                    $result = mysqli_query($con, $sql);
+                    while($row = mysqli_fetch_assoc($result)) {
+                        //echo $row['idx']."   ";
+                        //echo "<a href='simple.html'>". $row['title']."</a>   ";
+                        //echo $row['name'];
+                
+                        //print "<br><a href='simple.html'>메인 화면으로</a>";
+                        //
+                        //print "<tbody>"
+                        //print "<tr>"
+                        //echo "<td width="70">".$row['idx']."</td>";
+                        //echo "<td width="500"><a href="aaa">".$board['title']."</a></td>";
+                        //echo "<td width="120">".$row['name']."</td>";
+                        //echo "<td width="100">".$row['date']."</td>";
+                        ?>
+                        <tbody>
+                          <tr>
+                            <td width="70"><?php echo $row['idx']; ?></td>
+                            <td width="500"><a href="read.php?idx=<?php echo $row['idx'];?>"><?php echo $row['title'];?></a></td>
+                            <td width="120"><?php echo $row['name']?></td>
+                            <td width="100"><?php echo $row['date']?></td>
+                          </tr>
+                        </tbody>
+                        <?php } ?>
+                </table>
+                <div id="write_btn">
+                  <a href="write.php"><button>글쓰기</button></a>
+                </div>
+                </div>
                 </div>
             </div>
         </div>
